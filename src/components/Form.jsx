@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import generateContent from "../openai";
 
@@ -12,7 +12,7 @@ const Form = ({ openKey }) => {
     setisLoader(true);
 
     const data = await generateContent(
-      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto: ${product}`,
+      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`,
       openKey
     );
 
