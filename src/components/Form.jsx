@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import generateContent from "../openai";
 
-const Form = () => {
+const Form = ({ openKey }) => {
   const [isReponse, setisReponse] = React.useState("");
 
   const [input, setInput] = React.useState("");
@@ -12,7 +12,8 @@ const Form = () => {
     setisLoader(true);
 
     const data = await generateContent(
-      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto: ${product}`
+      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto: ${product}`,
+      openKey
     );
 
     setisLoader(false);

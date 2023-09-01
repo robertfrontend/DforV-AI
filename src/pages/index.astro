@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Form from "../components/Form";
+
+const OPEN_KEY = import.meta.env.OPENAI_API_KEY;
 ---
 
 <Layout title="Ventas Descripciones">
@@ -25,7 +27,7 @@ import Form from "../components/Form";
         </p>
 
         <div class="content-ai md:mx-auto sm:mx-0">
-          <Form client:load />
+          <Form client:load openKey={OPEN_KEY} />
         </div>
       </div>
     </main>
