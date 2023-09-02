@@ -24,8 +24,6 @@ const generateContent = async (prompt, openKey) => {
     primerPunto !== -1 ? primerPunto + 1 : texto.length
   );
 
-  console.log(oracion, "primer punto");
-
   return oracion;
 };
 

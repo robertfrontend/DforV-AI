@@ -8,8 +8,16 @@ const Form = ({ openKey }) => {
   const [input, setInput] = React.useState("");
   const [isLoader, setisLoader] = React.useState(false);
 
+  const [ipuser, setIpUser] = React.useState("");
+
+  React.useEffect(() => {
+    getIpUser();
+  }, []);
+
   const getData = async (product) => {
     setisLoader(true);
+
+    getIpUser();
 
     const data = await generateContent(
       `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`,
@@ -21,41 +29,90 @@ const Form = ({ openKey }) => {
     return data;
   };
 
-  const generate = async () => {
-    const response = await getData(input);
-    setisReponse("");
-    setisReponse(response);
+  // const generate = async () => {
+
+  // };
+
+  const getIpUser = async () => {
+    try {
+      const dtIp = await fetch("https://api.ipify.org?format=json");
+      const response = await dtIp.json();
+
+      setIpUser(response.ip);
+    } catch (error) {
+      alert("Ha ocurrido un error, intente mas tarde");
+    }
   };
 
+  // VALIDATE REQUEST
+
+  const [requestCount, setRequestCount] = React.useState(
+    parseInt(
+      typeof window !== "undefined" && localStorage.getItem("requestCount")
+    ) || 0
+  );
+
+  const maxRequestsPerHour = 5;
+  const resetInterval = 3600000; // 1 hora en milisegundos
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      typeof window !== "undefined" &&
+        localStorage.setItem("requestCount", "0"); // Reiniciar el contador cada hora
+      setRequestCount(0);
+    }, resetInterval);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  const makeRequest = async () => {
+    if (requestCount < maxRequestsPerHour) {
+      // Realiza aquí tu solicitud al servidor o acción deseada
+      typeof window !== "undefined" &&
+        localStorage.setItem("requestCount", (requestCount + 1).toString());
+
+      const response = await getData(input);
+      setisReponse("");
+      setisReponse(response);
+      setRequestCount(requestCount + 1);
+    } else {
+      alert("Excediste el numero de intentos permitido. Vuelve en 1 hora.");
+    }
+  };
+
+  // const response = await getData(input);
+  // setisReponse("");
+  // setisReponse(response);
   return (
     <div>
       <label
         for="message"
-        class="block mb-2 text-xl font-medium text-gray-20 text-left"
+        className="block mb-2 text-xl font-medium text-gray-20 text-left"
       >
         Breve descripción de tu producto
       </label>
       <textarea
         id="message"
         rows="4"
-        class="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Jabon de melocoton para las espinillas..."
         onChange={(e) => setInput(e.target.value)}
       ></textarea>
-
+      {/* {ipuser}IP USER */}
       {isLoader && <Loading />}
-
       {isReponse && (
-        <div class="p-6 border border-gray-200 rounded-lg shadow mt-5">
-          <p class="mb-3 font-normal text-gray-4">
+        <div className="p-6 border border-gray-200 rounded-lg shadow mt-5">
+          <p className="mb-3 font-normal text-gray-4">
             {isReponse || "No hay nada"}
           </p>
         </div>
       )}
       <button
         type="button"
-        class="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        onClick={() => generate()}
+        className="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        onClick={() => makeRequest()}
       >
         Generar descripción
       </button>
@@ -68,7 +125,7 @@ const Loading = () => {
     <div role="status" className="text-center mx-auto w-10 mt-5">
       <svg
         aria-hidden="true"
-        class="w-8 h-8 mr-2 text-gray-900 animate-spin  fill-blue-600"
+        className="w-8 h-8 mr-2 text-gray-900 animate-spin  fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +139,7 @@ const Loading = () => {
           fill="currentFill"
         />
       </svg>
-      <span class="sr-only">Loading...</span>
+      <span className="sr-only">Loading...</span>
     </div>
   );
 };
