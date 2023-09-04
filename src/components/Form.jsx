@@ -2,7 +2,7 @@ import React from "react";
 
 import generateContent from "../openai";
 
-const Form = ({ openKey }) => {
+const Form = () => {
   const [isReponse, setisReponse] = React.useState("");
 
   const [input, setInput] = React.useState("");
@@ -20,8 +20,7 @@ const Form = ({ openKey }) => {
     getIpUser();
 
     const data = await generateContent(
-      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`,
-      openKey
+      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`
     );
 
     setisLoader(false);
@@ -52,7 +51,7 @@ const Form = ({ openKey }) => {
     ) || 0
   );
 
-  const maxRequestsPerHour = 5;
+  const maxRequestsPerHour = 1000;
   const resetInterval = 3600000; // 1 hora en milisegundos
 
   React.useEffect(() => {

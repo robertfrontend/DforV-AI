@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const generateContent = async (prompt, openKey) => {
-  const apiKey = openKey;
+const generateContent = async (prompt) => {
+  const apiKey = process.env.OPENAI_API_KEY;
   const response = await axios.post(
     "https://api.openai.com/v1/engines/text-davinci-003/completions",
     {
