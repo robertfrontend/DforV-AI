@@ -86,10 +86,7 @@ const Form = () => {
   // setisReponse(response);
   return (
     <div>
-      <label
-        for="message"
-        className="block mb-2 text-xl font-medium text-gray-20 text-left"
-      >
+      <label className="block mb-2 text-xl font-medium text-gray-20 text-left">
         Breve descripción de tu producto
       </label>
       <textarea
