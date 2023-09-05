@@ -28,10 +28,6 @@ const Form = () => {
     return data;
   };
 
-  // const generate = async () => {
-
-  // };
-
   const getIpUser = async () => {
     try {
       const dtIp = await fetch("https://api.ipify.org?format=json");
@@ -81,9 +77,6 @@ const Form = () => {
     }
   };
 
-  // const response = await getData(input);
-  // setisReponse("");
-  // setisReponse(response);
   return (
     <div>
       <label className="block mb-2 text-xl font-medium text-gray-20 text-left">
@@ -96,7 +89,6 @@ const Form = () => {
         placeholder="Jabon de melocoton para las espinillas..."
         onChange={(e) => setInput(e.target.value)}
       ></textarea>
-      {/* {ipuser}IP USER */}
       {isLoader && <Loading />}
       {isReponse && (
         <div className="p-6 border border-gray-200 rounded-lg shadow mt-5">
