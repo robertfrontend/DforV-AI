@@ -27,7 +27,12 @@ const { title, colorHeader } = Astro.props;
   <body>
     <ViewTransitions />
     <Header colorHeader={colorHeader} />
-    <slot />
+
+    <div class="main-content">
+      <div class="container mx-auto sm:px-2 md:px-8">
+        <slot />
+      </div>
+    </div>
   </body>
 </html>
 <style is:global>
@@ -53,5 +58,9 @@ const { title, colorHeader } = Astro.props;
       Bitstream Vera Sans Mono,
       Courier New,
       monospace;
+  }
+
+  .main-content {
+    padding-top: 1em;
   }
 </style>
