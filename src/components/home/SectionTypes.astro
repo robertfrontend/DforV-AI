@@ -1,5 +1,5 @@
 <div class="content-types">
-  <div class="card violet">
+  <a href="/descriptions-sales" class="card violet full" transition:name="hero">
     <div class="text">
       <h2 class="text-xl font-normal">Descripciones AI</h2>
     </div>
@@ -16,7 +16,7 @@
         ></path>
       </svg>
     </div>
-  </div>
+  </a>
 
   <div class="card red">
     <div class="text">
@@ -72,10 +72,13 @@
   .card {
     width: 48%;
     margin: 0 auto;
-    height: 100px;
+    min-height: 100px;
     padding: 1em;
     border-radius: 12px;
     margin: 0.5em 0.5em;
+  }
+  .full {
+    width: 90%;
   }
   .text {
     width: 100%;
@@ -90,11 +93,14 @@
     background-color: #5352ed;
   }
   .red {
-    background-color: #ff4757;
+    /* background-color: #ff4757; */
+    background-color: #ff475682;
+    color: gray;
   }
 
   .naranja {
-    background-color: #ff7f50;
+    background-color: #ff7f507b;
+    color: gray;
   }
 
   @media screen and (max-width: 800px) {

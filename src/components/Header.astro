@@ -1,3 +1,11 @@
+---
+interface Props {
+  colorHeader?: string;
+}
+
+const { colorHeader } = Astro.props;
+---
+
 <div class="header container mx-auto">
   <div class="flex flex-row justify-center items-center">
     <div class="basis-6/12 intrologo px-4">
@@ -16,9 +24,10 @@
   <hr class="h-px my-2 bg-gray-800 border-0 dark:bg-gray-700" />
 </div>
 
-<style>
+<style define:vars={{ colorHeader }}>
   .header {
     padding-top: 1em;
+    background-color: var(--colorHeader);
   }
   .intrologo h1 {
     font-size: 2em;
