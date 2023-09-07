@@ -85,7 +85,7 @@ const Form = () => {
       <textarea
         id="message"
         rows="4"
-        className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
         placeholder="Jabon de melocoton para las espinillas..."
         onChange={(e) => setInput(e.target.value)}
       ></textarea>
