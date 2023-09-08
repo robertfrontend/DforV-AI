@@ -47,7 +47,7 @@ const Form = () => {
     ) || 0
   );
 
-  const maxRequestsPerHour = 5;
+  const maxRequestsPerHour = 30;
   const resetInterval = 3600000; // 1 hora en milisegundos
 
   React.useEffect(() => {
