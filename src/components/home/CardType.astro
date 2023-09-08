@@ -1,0 +1,51 @@
+---
+import Button from "../utils/Button.astro";
+
+interface Props {
+  title: string;
+  link: string;
+  background: string;
+}
+
+const { title, link = "", background = "#5352ed" } = Astro.props;
+---
+
+<a href={link} class="card violet full" transition:name="hero">
+  <div class={`icon text-left  ${link ? "text-white" : "text-gray-400"}`}>
+    <slot name="icon" />
+  </div>
+  <div class="text text-left">
+    <h2 class={`text-xl font-normal ${link ? "text-white" : "text-gray-400"}`}>
+      {title}
+    </h2>
+  </div>
+  <!-- <div class="text-right pt-2">
+    {link && <Button disabled>{link ? "Probar ✨" : "❌ Pronto..."}</Button>}
+  </div> -->
+</a>
+
+<style define:vars={{ background }}>
+  .card {
+    width: 48%;
+    margin: 0 auto;
+    min-height: 100px;
+    padding: 1em;
+    border-radius: 12px;
+    margin: 0.5em 0.5em;
+    background-color: var(--background);
+  }
+
+  .text {
+    width: 100%;
+    display: block;
+  }
+  .icon {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 800px) {
+    .card {
+      margin: 0.2em auto;
+    }
+  }
+</style>
