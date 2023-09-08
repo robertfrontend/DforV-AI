@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { title, colorHeader } = Astro.props;
+
+import { Analytics } from "@vercel/analytics/react";
 ---
 
 <!doctype html>
@@ -33,6 +35,7 @@ const { title, colorHeader } = Astro.props;
         <slot />
       </div>
     </div>
+    <Analytics />
   </body>
 </html>
 <style is:global>
