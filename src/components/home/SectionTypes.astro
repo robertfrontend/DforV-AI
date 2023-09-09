@@ -8,6 +8,9 @@ import CardType from "./CardType.astro";
     title="Descripciones AI"
     link="/descriptions-sales"
     background="#5352ed"
+    transition:persist
+    transition:name="hero"
+    transition:animate="slide"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +25,13 @@ import CardType from "./CardType.astro";
       ></path>
     </svg>
   </CardType>
-  <CardType title="Generar BIO" link="" background="#ff475682">
+  <CardType
+    title="Generar BIO"
+    link="/generate-bio"
+    background="#FF4757"
+    transition:name="bio"
+    transition:persist
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

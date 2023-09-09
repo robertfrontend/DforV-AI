@@ -2,7 +2,7 @@ import React from "react";
 
 import generateContent from "../openai";
 
-const Form = () => {
+const CreateDescription = () => {
   const [isReponse, setisReponse] = React.useState("");
 
   const [input, setInput] = React.useState("");
@@ -46,8 +46,7 @@ const Form = () => {
       typeof window !== "undefined" && localStorage.getItem("requestCount")
     ) || 0
   );
-  
- 
+
   const maxRequestsPerHour = 30;
 
   const resetInterval = 3600000; // 1 hora en milisegundos
@@ -71,12 +70,20 @@ const Form = () => {
         localStorage.setItem("requestCount", (requestCount + 1).toString());
 
       const response = await getData(input);
+
+      await navigator.clipboard.writeText(response);
+
       setisReponse("");
       setisReponse(response);
       setRequestCount(requestCount + 1);
     } else {
       alert("Excediste el numero de intentos permitido. Vuelve en 1 hora.");
     }
+  };
+
+  const handleCopyText = async () => {
+    await navigator.clipboard.writeText(isReponse);
+    alert("Texto copiado!✨🎉");
   };
 
   return (
@@ -93,10 +100,21 @@ const Form = () => {
       ></textarea>
       {isLoader && <Loading />}
       {isReponse && (
-        <div className="p-6 border border-gray-200 rounded-lg shadow mt-5">
-          <p className="mb-3 font-normal text-gray-4">
+        <div
+          className="p-6 border border-gray-200 rounded-lg shadow mt-5"
+          onClick={() => handleCopyText()}
+        >
+          <p className="mb-3 font-normal text-gray-4" id="card-text">
             {isReponse || "No hay nada"}
           </p>
+          <div className="text-center">
+            <button
+              type="button"
+              class="text-white-900 bg-dark border border-black-300 focus:outline-none  focus:ring-4  font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Copiar texto ✨
+            </button>
+          </div>
         </div>
       )}
       <button
@@ -134,4 +152,4 @@ const Loading = () => {
   );
 };
 
-export default Form;
+export default CreateDescription;
