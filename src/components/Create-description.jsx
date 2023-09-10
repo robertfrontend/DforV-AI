@@ -92,7 +92,7 @@ const CreateDescription = () => {
       <div className="py-4 text-left">
         <label
           for="countries"
-          class="block mt-4  mb-4 text-sm font-medium text-white "
+          class="block mt-4  mb-4 text-lg font-medium text-white "
         >
           <span class={stylespan}>1</span>
           Selecciona tipo
@@ -110,7 +110,7 @@ const CreateDescription = () => {
       </div>
 
       <div className="py-4">
-        <label className="block mb-4 text-sm font-medium text-gray-20 text-left">
+        <label className="block mb-4 text-lg font-medium text-gray-20 text-left">
           <span class={stylespan}>2</span>
           Breve descripción de tu producto
         </label>
