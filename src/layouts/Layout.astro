@@ -22,6 +22,22 @@ const { title, colorHeader } = Astro.props;
     <meta name="description" content="Astro description" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FVHW3M74VD"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-FVHW3M74VD");
+    </script>
+
     <title>{title}</title>
   </head>
   <body>
