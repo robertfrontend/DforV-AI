@@ -5,13 +5,29 @@ interface Props {
   title: string;
   link: string;
   background: string;
+  disabled?: boolean;
 }
 
-const { title, link = "", background = "#5352ed" } = Astro.props;
+const {
+  title,
+  link = "",
+  background = "#5352ed",
+  disabled = false,
+} = Astro.props;
 ---
 
-<a href={link} class="card violet full" transition:name="hero">
-  <div class={`icon text-left  ${link ? "text-white" : "text-gray-400"}`}>
+<a
+  href={!disabled && link}
+  class:list={[
+    "card violet full",
+    {
+      "opacity-50": disabled,
+      "opacity-100": !disabled,
+    },
+  ]}
+  transition:name="hero"
+>
+  <div class={`icon text-left  ${!disabled ? "text-white" : "text-gray-400"}`}>
     <slot name="icon" />
   </div>
   <div class="text text-left">
@@ -19,8 +35,8 @@ const { title, link = "", background = "#5352ed" } = Astro.props;
       class:list={[
         "text-xl font-normal",
         {
-          "text-white": link,
-          "text-gray-400": !link,
+          "text-white": !disabled,
+          "text-gray-400": disabled,
         },
       ]}
     >
@@ -32,7 +48,7 @@ const { title, link = "", background = "#5352ed" } = Astro.props;
   </div> -->
 </a>
 
-<style define:vars={{ background }}>
+<style define:vars={{ background, disabled }}>
   .card {
     width: 48%;
     margin: 0 auto;

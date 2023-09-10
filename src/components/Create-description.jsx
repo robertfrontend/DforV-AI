@@ -71,8 +71,6 @@ const CreateDescription = () => {
 
       const response = await getData(input);
 
-      await navigator.clipboard.writeText(response);
-
       setisReponse("");
       setisReponse(response);
       setRequestCount(requestCount + 1);
@@ -86,18 +84,46 @@ const CreateDescription = () => {
     alert("Texto copiado!✨🎉");
   };
 
+  const stylespan =
+    "bg-blue-600 text-xs font-medium mr-2 px-3 py-2 text-white rounded-full";
+
   return (
     <div>
-      <label className="block mb-2 text-xl font-medium text-gray-20 text-left">
-        Breve descripción de tu producto
-      </label>
-      <textarea
-        id="message"
-        rows="4"
-        className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-        placeholder="Jabon de melocoton para las espinillas..."
-        onChange={(e) => setInput(e.target.value)}
-      ></textarea>
+      <div className="py-4 text-left">
+        <label
+          for="countries"
+          class="block mt-4  mb-4 text-sm font-medium text-white "
+        >
+          <span class={stylespan}>1</span>
+          Selecciona tipo
+        </label>
+        <select
+          id="countries"
+          class=" bg-gray-800 border border-gray-800  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option value="Profesional" selected>
+            Profesional
+          </option>
+          <option value="divertida">Divertida</option>
+          <option value="Casual">Casual</option>
+        </select>
+      </div>
+
+      <div className="py-4">
+        <label className="block mb-4 text-sm font-medium text-gray-20 text-left">
+          <span class={stylespan}>2</span>
+          Breve descripción de tu producto
+        </label>
+
+        <textarea
+          id="message"
+          rows="4"
+          className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border  focus:ring-blue-500 focus:border-blue-500 "
+          placeholder="Jabon de melocoton para las espinillas..."
+          onChange={(e) => setInput(e.target.value)}
+        ></textarea>
+      </div>
+
       {isLoader && <Loading />}
       {isReponse && (
         <div
