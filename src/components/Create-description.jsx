@@ -8,6 +8,8 @@ const CreateDescription = () => {
   const [input, setInput] = React.useState("");
   const [isLoader, setisLoader] = React.useState(false);
 
+  const [typeDescription, setTypeDescription] = React.useState("profesional");
+
   const [ipuser, setIpUser] = React.useState("");
 
   React.useEffect(() => {
@@ -19,9 +21,9 @@ const CreateDescription = () => {
 
     getIpUser();
 
-    const data = await generateContent(
-      `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`
-    );
+    const prompt = `Redactame una descripción atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`;
+
+    const data = await generateContent(prompt);
 
     setisLoader(false);
 
@@ -89,29 +91,27 @@ const CreateDescription = () => {
 
   return (
     <div>
-      <div className="py-4 text-left">
-        <label
-          for="countries"
-          class="block mt-4  mb-4 text-lg font-medium text-white "
-        >
-          <span class={stylespan}>1</span>
+      {/* <div className="py-4 text-left">
+        <label className="block mt-4  mb-4 text-lg font-medium text-white ">
+          <span className={stylespan}>1</span>
           Selecciona tipo
         </label>
         <select
           id="countries"
-          class=" bg-gray-800 border border-gray-800  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className=" bg-gray-800 border border-gray-800  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          onChange={(e) => setTypeDescription(e.target.value)}
         >
-          <option value="Profesional" selected>
+          <option value="profesional" selected>
             Profesional
           </option>
-          <option value="divertida">Divertida</option>
-          <option value="Casual">Casual</option>
+          <option value="divertida">Corta</option>
+          <option value="casual">Mediana</option>
         </select>
-      </div>
+      </div> */}
 
       <div className="py-4">
         <label className="block mb-4 text-lg font-medium text-gray-20 text-left">
-          <span class={stylespan}>2</span>
+          <span class={stylespan}>1</span>
           Breve descripción de tu producto
         </label>
 
@@ -126,20 +126,26 @@ const CreateDescription = () => {
 
       {isLoader && <Loading />}
       {isReponse && (
-        <div
-          className="p-6 border border-gray-200 rounded-lg shadow mt-5"
-          onClick={() => handleCopyText()}
-        >
-          <p className="mb-3 font-normal text-gray-4" id="card-text">
-            {isReponse || "No hay nada"}
-          </p>
-          <div className="text-center">
-            <button
-              type="button"
-              class="text-white-900 bg-dark border border-black-300 focus:outline-none  focus:ring-4  font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              Copiar texto ✨
-            </button>
+        <div className="text-left">
+          <label className="block mt-4  mb-4 text-lg font-medium text-white ">
+            <span className={stylespan}>2</span>
+            Compartir en tus redes sociales
+          </label>
+          <div
+            className="p-6 border border-gray-200 rounded-lg shadow mt-5 text-center"
+            onClick={() => handleCopyText()}
+          >
+            <p className="mb-3 font-normal text-gray-4" id="card-text">
+              {isReponse || "No hay nada"}
+            </p>
+            <div className="text-center">
+              <button
+                type="button"
+                class="text-white-900 bg-dark border border-black-300 focus:outline-none  focus:ring-4  font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              >
+                Copiar texto ✨
+              </button>
+            </div>
           </div>
         </div>
       )}
