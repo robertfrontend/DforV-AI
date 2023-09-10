@@ -1,5 +1,4 @@
 ---
-import Button from "../utils/Button.astro";
 import CardType from "./CardType.astro";
 ---
 
@@ -8,9 +7,7 @@ import CardType from "./CardType.astro";
     title="Descripciones AI"
     link="/descriptions-sales"
     background="#5352ed"
-    transition:persist
     transition:name="hero"
-    transition:animate="slide"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,10 +24,11 @@ import CardType from "./CardType.astro";
   </CardType>
   <CardType
     title="Generar BIO"
-    link=""
+    link="/generate-bio"
     background="#FF4757"
     transition:name="bio"
     transition:persist
+    disabled={true}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +46,12 @@ import CardType from "./CardType.astro";
       ></path>
     </svg>
   </CardType>
-  <CardType title="Generar ofertas" link="" background="#ff7f507b">
+  <CardType
+    title="Generar ofertas"
+    link=""
+    background="#ff7f507b"
+    disabled={true}
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
