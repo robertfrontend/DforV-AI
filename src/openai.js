@@ -4,28 +4,29 @@ const generateContent = async (prompt) => {
   const apiKey = import.meta.env.PUBLIC_OPENAI_API_KEY;
 
   const response = await axios.post(
-    "https://api.openai.com/v1/engines/text-davinci-003/completions",
+    "https://api.openai.com/v1/chat/completions",
     {
-      prompt: prompt,
-      max_tokens: 100, // Ajusta según tus necesidades
+      messages: [{ role: "system", content: prompt }],
+      model: "gpt-3.5-turbo",
+      max_tokens: 100,
     },
     {
       headers: {
-        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
       },
     }
   );
 
-  const texto = response.data.choices[0].text;
+  const text = response.data.choices[0].message.content;
 
-  const primerPunto = texto.indexOf(".");
-  const oracion = texto.substring(
+  const primerPunto = text.indexOf(".");
+  const textComplete = text.substring(
     0,
-    primerPunto !== -1 ? primerPunto + 1 : texto.length
+    primerPunto !== -1 ? primerPunto + 1 : text.length
   );
 
-  return oracion;
+  return textComplete;
 };
 
 export default generateContent;

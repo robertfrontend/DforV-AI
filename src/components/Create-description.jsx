@@ -74,6 +74,7 @@ const CreateDescription = () => {
       const response = await getData(input);
 
       setisReponse("");
+
       setisReponse(response);
       setRequestCount(requestCount + 1);
     } else {
