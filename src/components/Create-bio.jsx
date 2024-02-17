@@ -3,7 +3,7 @@ import React from "react";
 import generateContent from "../openai";
 import Loading from "./Loading";
 
-const CreateDescription = () => {
+const CreateBio = () => {
   const [isReponse, setisReponse] = React.useState("");
 
   const [input, setInput] = React.useState("");
@@ -22,7 +22,7 @@ const CreateDescription = () => {
 
     getIpUser();
 
-    const prompt = `Redactame una descripción ${typeDescription} y atractiva para obtener mas ventas y nuevos clientes para este prodcuto/servicio: ${product}`;
+    const prompt = `Creame una biografia ${typeDescription} y atractiva para mi instagram, acá los detalles de que se trata mi instagram: ${product}`;
 
     const data = await generateContent(prompt);
 
@@ -89,7 +89,7 @@ const CreateDescription = () => {
   };
 
   const stylespan =
-    "bg-blue-600 text-xs font-medium mr-2 px-3 py-2 text-white rounded-full";
+    "bg-red-500 text-xs font-medium mr-2 px-3 py-2 text-white rounded-full";
 
   return (
     <div>
@@ -100,7 +100,7 @@ const CreateDescription = () => {
         </label>
         <select
           id="countries"
-          className=" bg-gray-800 border border-gray-800  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className=" bg-gray-800 border border-gray-800  text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           onChange={(e) => setTypeDescription(e.target.value)}
         >
           <option value="profesional" selected>
@@ -114,14 +114,14 @@ const CreateDescription = () => {
       <div className="py-4">
         <label className="block mb-4 text-lg font-medium text-gray-20 text-left">
           <span class={stylespan}>1</span>
-          Breve descripción de tu producto
+          Breve descripción de tu perfil.
         </label>
 
         <textarea
           id="message"
           rows="4"
-          className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border  focus:ring-blue-500 focus:border-blue-500 "
-          placeholder="Jabon de melocoton para las espinillas..."
+          className="block p-2.5 w-full text-sm text-gray-40 bg-gray-800 rounded-lg border  focus:ring-red-500 focus:border-red-500 "
+          placeholder="Example: Hago marketing digital para pequeños negocios..."
           onChange={(e) => setInput(e.target.value)}
         ></textarea>
       </div>
@@ -153,7 +153,7 @@ const CreateDescription = () => {
       )}
       <button
         type="button"
-        className="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        className="text-white mt-5 bg-red-500 hover:bg-red-400 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
         onClick={() => makeRequest()}
       >
         Generar descripción
@@ -162,4 +162,4 @@ const CreateDescription = () => {
   );
 };
 
-export default CreateDescription;
+export default CreateBio;
