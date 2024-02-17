@@ -50,7 +50,7 @@ const CreateBio = () => {
     ) || 0
   );
 
-  const maxRequestsPerHour = 30;
+  const maxRequestsPerHour = 5;
 
   const resetInterval = 3600000; // 1 hora en milisegundos
 
@@ -151,6 +151,15 @@ const CreateBio = () => {
           </div>
         </div>
       )}
+
+      {requestCount >= maxRequestsPerHour && (
+        <>
+          <a href="https://buy.stripe.com/bIY3ef2sbeuW52waEH">
+            Comprar membresia 💳
+          </a>
+        </>
+      )}
+      <br />
       <button
         type="button"
         className="text-white mt-5 bg-red-500 hover:bg-red-400 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"

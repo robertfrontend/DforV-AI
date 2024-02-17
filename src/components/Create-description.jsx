@@ -50,7 +50,7 @@ const CreateDescription = () => {
     ) || 0
   );
 
-  const maxRequestsPerHour = 30;
+  const maxRequestsPerHour = 5;
 
   const resetInterval = 3600000; // 1 hora en milisegundos
 
@@ -151,6 +151,15 @@ const CreateDescription = () => {
           </div>
         </div>
       )}
+
+      {requestCount >= maxRequestsPerHour && (
+        <>
+          <a href="https://buy.stripe.com/bIY3ef2sbeuW52waEH">
+            Comprar membresia 💳
+          </a>
+        </>
+      )}
+      <br />
       <button
         type="button"
         className="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
